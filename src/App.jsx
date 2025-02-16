@@ -1,6 +1,6 @@
 import './index.css'
 import SiteBorder from './components/SiteBorder.jsx'
-import Hero from './pageSections/Hero/Hero.jsx'
+import Hero from './pageSections/Hero.jsx'
 
 function App() {
 

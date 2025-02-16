@@ -2,23 +2,27 @@
   
 
 :root {
-  --pcol: brown;
+  --pcol: #8a2222; /*primary color*/
   --scol: #2ecc71;
   --text: #333;
   --text-dim: #333;
   --bg: #fff;
-  --brad: max(2vw, 2vh);
+  --mrad: max(3vw, 2vh); /*margin radius*/
+  --brad: max(2.4vw, 2vh);
   --max-width: 1200px;
   --transition-speed: 0.3s ease;
+  --siteborder: 0.8vh;
 }
 
 * {
   box-sizing: border-box;
-  font-family: monospace;
   font-family: "Source Code Pro", monospace;
+  /* font-family: "MuseoModerno", monospace; */
   letter-spacing: -1.3px;
   word-spacing: -3px;
   line-height: 150%;
+  scrollbar-width: none;
+
 }
 
 body,

@@ -6,10 +6,10 @@ import leetcode from "/socialMedia/leetcode.svg";
 import github from "/socialMedia/github.svg";
 
 const SiteBorder = ({ children }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerHeight);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerHeight);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -20,12 +20,12 @@ const SiteBorder = ({ children }) => {
       <div className="w-[50px]">
         <div className="flex justify-around rotate-[-90deg] w-[100vh] transform origin-[100%_0%] h-[50px] -translate-x-[100%] ">
           <div className="bg-[url('/floating-sidebar.svg')] bg-cover bg-no-repeat h-[90%] w-[225px] mt-[5.5px]">
-            <a href="#" className="px-18 p-2 text-[1.7rem]">
+            <a href="#" className="px-18 p-2 text-[1.7rem] text-nowrap">
               Get CV
             </a>
           </div>
           <br />
-          {windowWidth > 1200 ? (
+          {windowWidth > 700 ? (
             <div className=" flex gap-7 text-[1.1rem] my-auto">
               <a
                 className="!text-white"
@@ -58,29 +58,29 @@ const SiteBorder = ({ children }) => {
               </a>
             </div>
           ) : (
-            <div className="flex gap-6 text-lg my-auto">
+            <div className="flex gap-8 text-lg my-auto border">
               <a
                 target="_blank"
                 href="https://www.linkedin.com/in/rishukumarcodes/"
               >
-                <img className="rotate-90 w-[1.5rem]" src={linkedin} alt="" />
+                <img className="rotate-90 w-[1.25rem]" src={linkedin} alt="" />
               </a>
               <a target="_blank" href="https://x.com/Rishu_kumar878">
-                <img className="rotate-90 w-[1.5rem]" src={twitter} alt="" />
+                <img className="rotate-90 w-[1.25rem]" src={twitter} alt="" />
               </a>
               <span className="border border-neutral-600" />
               <a target="_blank" href="https://leetcode.com/u/rishukumarcodes/">
-                <img className="rotate-90 w-[1.5rem]" src={leetcode} alt="" />
+                <img className="rotate-90 w-[1.25rem]" src={leetcode} alt="" />
               </a>
               <a target="_blank" href="https://github.com/RishuKumarCodes">
-                <img className="rotate-90 w-[1.5rem]" src={github} alt="" />
+                <img className="rotate-90 w-[1.25rem]" src={github} alt="" />
               </a>
             </div>
           )}
         </div>
       </div>
       {/* main content */}
-      <div className="flex-1 m-[0.7%] ml-0 rounded-(--brad) overflow-y-scroll h-[97.2%] w-max bg-(--bg)">
+      <div className="flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg)">
         {children}
       </div>
     </div>
