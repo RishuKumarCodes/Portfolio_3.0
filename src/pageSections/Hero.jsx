@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "../styles/hero.css";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
@@ -12,6 +12,9 @@ function Hero() {
   const Imrishu = useRef(null);
   const leftBoxRef = useRef(null);
   const highlightRef = useRef(null);
+  const videoRef = useRef(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // animation for just after page reloads.
   useEffect(() => {
@@ -79,6 +82,11 @@ function Hero() {
           { y: "80%" },
           { y: "0%", duration: 2.5, ease: "back.inOut(1)" }
         );
+      }
+
+      setShowVideo(true);
+      if (videoRef.current) {
+        videoRef.current.play().catch(() => setVideoError(true)); // If autoplay fails, show image
       }
     }, 3800);
 
@@ -163,7 +171,26 @@ function Hero() {
           ref={leftBoxRef}
         >
           <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
-          <div className="mt-(--gap) w-[27vw] h-[37vh] bg-(--pcol) rounded-(--brad)"></div>
+          <div className="mt-(--gap) w-[27vw] h-[37vh] rounded-(--brad) overflow-hidden">
+            {!showVideo || videoError ? (
+              <img
+                src="/consoleLogImg.jpg"
+                className="h-full w-full object-cover object-left"
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                className="h-full w-full object-cover object-left"
+                autoPlay
+                loop
+                muted
+                playsInline
+                onError={() => setVideoError(true)} // If video fails, fallback to image
+              >
+                <source src="/consoleLogs.mp4" type="video/mp4" />
+              </video>
+            )}
+          </div>
         </div>
 
         {/* hilights strip */}
