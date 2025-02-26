@@ -1,9 +1,12 @@
 import { useRef, useEffect, useState } from "react";
 import "../styles/hero.css";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import bgImg from "/heroSection-bg.jpg";
 import subImg from "/heroSection-subject.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Hero() {
   const imgBorder = useRef(null);
@@ -16,7 +19,7 @@ function Hero() {
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  // animation for just after page reloads.
+  // Initial animations on page load
   useEffect(() => {
     if (imgBorder.current) {
       gsap.set(imgBorder.current, {
@@ -34,7 +37,7 @@ function Hero() {
       const spans = Imrishu.current.querySelectorAll("span");
       gsap.set(spans, { y: 1000 });
     }
-    // timeout to wait until preloader finishes
+    // Timeout to wait until preloader finishes
     const timer = setTimeout(() => {
       if (imgBorder.current) {
         gsap.to(imgBorder.current, {
@@ -86,11 +89,88 @@ function Hero() {
 
       setShowVideo(true);
       if (videoRef.current) {
-        videoRef.current.play().catch(() => setVideoError(true)); // If autoplay fails, show image
+        videoRef.current.play().catch(() => setVideoError(true));
       }
     }, 3800);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // Parallax scroll trigger effect
+  useEffect(() => {
+    const bgImgEl = img.current.querySelector(".img_1");
+    const subImgEl = img.current.querySelector(".img_2");
+
+    gsap.fromTo(
+      bgImgEl,
+      { y: 0 },
+      {
+        y: "-8%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: imgBorder.current,
+          start: "center center",
+          scrub: true,
+          scroller: ".content-wrapper",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      subImgEl,
+      { y: 0 },
+      {
+        y: "-17%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: imgBorder.current,
+          start: "center center",
+          scrub: true,
+          scroller: ".content-wrapper",
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
+  // 3D Mousemove effect with differential layer shifts
+  useEffect(() => {
+    if (!imgBorder.current) return;
+    const bgImgEl = img.current.querySelector(".img_1");
+    const subImgEl = img.current.querySelector(".img_2");
+
+    const handleMouseMove = (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const offsetX = (e.clientX - centerX) / centerX;
+      const offsetY = (e.clientY - centerY) / centerY;
+
+      const bgX = offsetX * -10;
+      const bgY = offsetY * -10;
+      const subX = offsetX * -20;
+      const subY = offsetY * -20;
+
+      gsap.to(bgImgEl, {
+        x: bgX,
+        y: bgY,
+        ease: "power3.out",
+        duration: 0.5,
+      });
+      gsap.to(subImgEl, {
+        x: subX,
+        y: subY,
+        ease: "power3.out",
+        duration: 0.5,
+      });
+    };
+
+    // Attach the event listener to the frame only
+    const frame = imgBorder.current;
+    frame.addEventListener("mousemove", handleMouseMove);
+    return () => frame.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
@@ -100,12 +180,12 @@ function Hero() {
           .hero-section {
             --space: 3vw;
             --gap: calc(var(--space) / 2);
+
             --h: calc(100vh + 75px);
             --w: calc(100% - var(--space)) - var(--siteborder);
-            --max-h: calc(1080px + 80px);
 
             --img-h: calc(100vh - var(--siteborder)*2 - var(--space));
-                        --img-w: calc(100vw - var(--space));
+            --img-w: calc(100vw - var(--space) - 64px - var(--siteborder)*2);
 
             --leftbox-w: calc(27vw + var(--gap));
             --leftbox-h: calc(37vh + var(--gap));
@@ -113,39 +193,38 @@ function Hero() {
 
             --edge-w: calc(var(--brad)*2);
             --edge-h: calc(var(--brad)*2);
-            --edge-pos-t:  calc(-1 * (var(--brad) *2) + 1px);
-            --edge-sdw: calc(-1* var(--gap)) var(--gap) 0 var(--bg);
-
+            --edge-pos-t: calc(-1 * (var(--brad)*2) + 1px);
+            --edge-sdw: calc(-1 * var(--gap)) var(--gap) 0 var(--bg);
             user-select: none;
           }
         `}
       </style>
-      <div className="hero-section h-(--h) max-h-(--max-h) w-(--w) mx-(--gap) mt-(--gap) relative overflow-hidden mb-7">
-        <div
-          className="image-section overflow-hidden h-(--img-h) !rounded-[var(--brad)]"
+      <div className="hero-section h-(--h) w-(--w) mx-(--gap) mt-(--gap) relative overflow-hidden mb-7">
+        <section
+          className="image-section overflow-hidden h-(--img-h) w-(--img-w) !rounded-[var(--brad)] "
           ref={imgBorder}
         >
-          {/* images */}
-          <div className="img relative" ref={img}>
+          {/* Images */}
+          <figure className="img relative " ref={img}>
             <img
-              className="img_1 relative object-cover -top-[10px] max-w-full min-h-[1080px]"
+              className="img_1 relative object-cover top-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
               data-scroll
               data-scroll-speed="2"
               src={bgImg}
               alt="Background"
             />
             <img
-              className="img_2 absolute object-cover top-0 left-0 max-w-full min-h-[1080px]"
+              className="img_2 absolute object-cover top-0 left-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
               data-scroll
               data-scroll-speed="4"
               src={subImg}
               alt="Subject"
             />
-          </div>
+          </figure>
 
-          {/* text */}
-          <div
-            className="text absolute bottom-[0%] right-[5%] text-white flex "
+          {/* Text */}
+          <figcaption
+            className="text absolute bottom-[0%] right-[5%] text-white flex"
             data-scroll
             data-scroll-speed="-0.8"
           >
@@ -162,12 +241,12 @@ function Hero() {
                 </span>
               ))}
             </h1>
-          </div>
-        </div>
+          </figcaption>
+        </section>
 
-        {/* terminal at bottom-left*/}
-        <div
-          className="absolute bottom-0 h-(--leftbox-h)  w-(--leftbox-w) bg-(--bg) rounded-tr-(--mrad) z-2"
+        {/* Terminal at bottom-left */}
+        <section
+          className="absolute bottom-0 h-(--leftbox-h) w-(--leftbox-w) bg-(--bg) rounded-tr-(--mrad) z-2"
           ref={leftBoxRef}
         >
           <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
@@ -176,6 +255,7 @@ function Hero() {
               <img
                 src="/consoleLogImg.jpg"
                 className="h-full w-full object-cover object-left"
+                alt="Console Fallback"
               />
             ) : (
               <video
@@ -185,40 +265,39 @@ function Hero() {
                 loop
                 muted
                 playsInline
-                onError={() => setVideoError(true)} // If video fails, fallback to image
+                onError={() => setVideoError(true)}
               >
                 <source src="/consoleLogs.mp4" type="video/mp4" />
               </video>
             )}
           </div>
-        </div>
+        </section>
 
-        {/* hilights strip */}
-        <div
-          className="flex ml-auto text-(--pcol) text-[7.5rem] w-(--hilight-w)"
+        {/* Highlights strip */}
+        <section
+          className="flex ml-auto text-(--pcol) text-[7.3rem] w-(--hilight-w)"
           ref={highlightRef}
         >
           <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
           <p
             className="whitespace-nowrap animate-[moveHighlight_25s_linear_infinite] z-1 flex items-center"
-            style={{ fontFamily: "Fugaz One" }}
+            style={{ fontFamily: "Reenie Beanie" }}
           >
-            ASPIRING SOFTWARE DEVLOPER{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
-            BASED ON BIHAR{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
-            OPEN SOURCE{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
-            ASPIRING SOFTWARE DEVLOPER{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
-            BASED ON BIHAR{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
-            OPEN SOURCE{" "}
-            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            based on bihar{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+            aspiring software developer{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+            open source{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+            based on bihar{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+            aspiring software developer{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+            open source{" "}
+            <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
           </p>
-        </div>
+        </section>
       </div>
-      {/* </div> */}
     </>
   );
 }

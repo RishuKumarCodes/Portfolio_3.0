@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
   <!-- Inline critical CSS for the preloader -->
   <style>
     html,
@@ -39,7 +39,6 @@
       font-weight: 700;
       line-height: 1.1;
       margin: 0;
-      /* Ensure we can position the underline absolutely inside each line */
       position: relative;
     }
 
@@ -51,7 +50,6 @@
       font-size: 3vw;
     }
 
-    /* Each letter starts off hidden, shifted left, skewed, and blurred */
     .letter {
       display: inline-block;
       opacity: 0;
@@ -62,11 +60,9 @@
     }
   </style>
   <!-- Load GSAP from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
-  <!-- Preloader Markup -->
   <div id="preloader">
     <div class="line" id="line1">
       <span class="letter">D</span><span class="letter">r</span><span class="letter">i</span><span
@@ -91,7 +87,6 @@
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 
-  <!-- GSAP prelaoder Animation(Skew, Fade, Blur & Underline) -->
   <script>
     let preloaderAnimationStarted = false;
 
@@ -242,9 +237,9 @@
       startPreloaderAnimation();
     }
 
-    // Fallback in case DOMContentLoaded delays
     setTimeout(startPreloaderAnimation, 3000);
   </script>
+  
 </body>
 
 </html>

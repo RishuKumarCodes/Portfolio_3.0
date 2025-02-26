@@ -17,9 +17,9 @@ const SiteBorder = ({ children }) => {
   return (
     <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
       {/* sidebar */}
-      <div className="w-[50px]">
-        <div className="flex justify-around rotate-[-90deg] w-[100vh] transform origin-[100%_0%] h-[50px] -translate-x-[100%] ">
-          <div className="bg-[url('/floating-sidebar.svg')] bg-cover bg-no-repeat h-[90%] w-[225px] mt-[5.5px]">
+      <div className="w-[64px]">
+        <div className="flex justify-around rotate-[-90deg] w-[100vh] transform origin-[100%_0%] h-[64px] -translate-x-[100%] ">
+          <div className="bg-[url('/floating-sidebar.svg')] bg-cover bg-no-repeat h-[70%] w-[225px] mt-[19.5px] ml-2.5">
             <a href="#" className="px-18 p-2 text-[1.7rem] text-nowrap">
               Get CV
             </a>
@@ -80,7 +80,7 @@ const SiteBorder = ({ children }) => {
         </div>
       </div>
       {/* main content */}
-      <div className="flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg)">
+      <div className="flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg) ">
         {children}
       </div>
     </div>
