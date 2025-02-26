@@ -165,7 +165,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* left box */}
+        {/* terminal at bottom-left*/}
         <div
           className="absolute bottom-0 h-(--leftbox-h)  w-(--leftbox-w) bg-(--bg) rounded-tr-(--mrad) z-2"
           ref={leftBoxRef}
@@ -195,13 +195,26 @@ function Hero() {
 
         {/* hilights strip */}
         <div
-          className=" flex ml-auto text-(--pcol) font-black text-[8rem] w-(--hilight-w)"
+          className="flex ml-auto text-(--pcol) text-[7.5rem] w-(--hilight-w)"
           ref={highlightRef}
         >
           <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
-          <p className="whitespace-nowrap animate-[moveHighlight_25s_linear_infinite] z-1">
-            BASED ON BIHAR, INDIA &#8618; OPEN SOURCE &#8618; BASED ON BIHAR,
-            INDIA &#8618; OPEN SOURCE &#8618;
+          <p
+            className="whitespace-nowrap animate-[moveHighlight_25s_linear_infinite] z-1 flex items-center"
+            style={{ fontFamily: "Fugaz One" }}
+          >
+            ASPIRING SOFTWARE DEVLOPER{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            BASED ON BIHAR{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            OPEN SOURCE{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            ASPIRING SOFTWARE DEVLOPER{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            BASED ON BIHAR{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
+            OPEN SOURCE{" "}
+            <span className="text-gray-800 text-[5.5rem] px-7">&#9679;</span>
           </p>
         </div>
       </div>

@@ -1,19 +1,22 @@
-import './index.css'
-import SiteBorder from './components/SiteBorder.jsx'
-import Hero from './pageSections/Hero.jsx'
+import "./index.css";
+import SiteBorder from "./components/SiteBorder.jsx";
+import Hero from "./pageSections/Hero.jsx";
+import About from "./pageSections/About/About.jsx";
+import CursorComponent from "./components/CursorComponent";
+import LenisScroll from "./components/LenisScroll.jsx";
 
 function App() {
-
   return (
     <>
-    {/* preloader is directly added to index.html for faster loading time. */}
+      <CursorComponent />
       <SiteBorder>
-        <div className=''>
-          <Hero/>
-        </div>
+        <LenisScroll>
+          <Hero />
+          <About />
+        </LenisScroll>
       </SiteBorder>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

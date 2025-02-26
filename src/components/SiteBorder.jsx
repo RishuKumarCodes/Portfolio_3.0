@@ -15,7 +15,7 @@ const SiteBorder = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden">
+    <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
       {/* sidebar */}
       <div className="w-[50px]">
         <div className="flex justify-around rotate-[-90deg] w-[100vh] transform origin-[100%_0%] h-[50px] -translate-x-[100%] ">
