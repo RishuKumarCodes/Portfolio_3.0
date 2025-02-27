@@ -56,7 +56,8 @@ function Hero() {
         gsap.to(Imrishu.current.querySelectorAll("span"), {
           y: 0,
           stagger: 0.08,
-          duration: 2.5,
+          duration: 2.3,
+          delay:0.5,
           ease: CustomEase.create(
             "custom",
             "M0,0 C0.084,0.61 0.065,0.742 0.2,0.858 0.276,0.92 0.374,1 1,1 "
@@ -208,29 +209,21 @@ function Hero() {
           <figure className="img relative " ref={img}>
             <img
               className="img_1 relative object-cover top-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
-              data-scroll
-              data-scroll-speed="2"
               src={bgImg}
               alt="Background"
             />
             <img
               className="img_2 absolute object-cover top-0 left-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
-              data-scroll
-              data-scroll-speed="4"
               src={subImg}
               alt="Subject"
             />
           </figure>
 
           {/* Text */}
-          <figcaption
-            className="text absolute bottom-[0%] right-[5%] text-white flex"
-            data-scroll
-            data-scroll-speed="-0.8"
-          >
+          <figcaption className="text absolute bottom-[0%] right-[5%] text-white flex">
             <p
               ref={Hey}
-              className="relative opacity-0 left-[60px] bottom-[35px] text-[3vw]"
+              className="relative opacity-0 left-[5vw] bottom-[7vh] text-[3vw]"
             >
               Hey,
             </p>

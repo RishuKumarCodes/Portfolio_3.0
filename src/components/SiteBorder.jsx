@@ -1,89 +1,36 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import linkedin from "/socialMedia/linkedin.svg";
-import twitter from "/socialMedia/twitter.svg";
-import leetcode from "/socialMedia/leetcode.svg";
-import github from "/socialMedia/github.svg";
+import Sidebar from "./Sidebar";
 
 const SiteBorder = ({ children }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerHeight);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerHeight);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const contentClasses =
+    windowWidth <= 650
+      ? "bg-white"
+      : "flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg)";
+
   return (
-    <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
-      {/* sidebar */}
-      <div className="w-[64px]">
-        <div className="flex justify-around rotate-[-90deg] w-[100vh] transform origin-[100%_0%] h-[64px] -translate-x-[100%] ">
-          <div className="bg-[url('/floating-sidebar.svg')] bg-cover bg-no-repeat h-[70%] w-[225px] mt-[19.5px] ml-2.5">
-            <a href="#" className="px-18 p-2 text-[1.7rem] text-nowrap">
-              Get CV
-            </a>
-          </div>
-          <br />
-          {windowWidth > 700 ? (
-            <div className=" flex gap-7 text-[1.1rem] my-auto">
-              <a
-                className="!text-white"
-                target="_blank"
-                href="https://www.linkedin.com/in/rishukumarcodes/"
-              >
-                Linkedin
-              </a>
-              <a
-                className="!text-white"
-                target="_blank"
-                href="https://x.com/Rishu_kumar878"
-              >
-                Twitter
-              </a>
-              <span className="border border-neutral-600" />
-              <a
-                className="!text-white"
-                target="_blank"
-                href="https://leetcode.com/u/rishukumarcodes/"
-              >
-                leetcode
-              </a>
-              <a
-                className="!text-white"
-                target="_blank"
-                href="https://github.com/RishuKumarCodes"
-              >
-                Github
-              </a>
-            </div>
-          ) : (
-            <div className="flex gap-8 text-lg my-auto border">
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/in/rishukumarcodes/"
-              >
-                <img className="rotate-90 w-[1.25rem]" src={linkedin} alt="" />
-              </a>
-              <a target="_blank" href="https://x.com/Rishu_kumar878">
-                <img className="rotate-90 w-[1.25rem]" src={twitter} alt="" />
-              </a>
-              <span className="border border-neutral-600" />
-              <a target="_blank" href="https://leetcode.com/u/rishukumarcodes/">
-                <img className="rotate-90 w-[1.25rem]" src={leetcode} alt="" />
-              </a>
-              <a target="_blank" href="https://github.com/RishuKumarCodes">
-                <img className="rotate-90 w-[1.25rem]" src={github} alt="" />
-              </a>
-            </div>
-          )}
-        </div>
+    <>
+      <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden ">
+        {windowWidth > 650 ? (
+          <Sidebar/>
+        ) : (
+          <></>
+        )}
+        {/* main content */}
+        <div className={contentClasses}>{children}</div>
       </div>
-      {/* main content */}
-      <div className="flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg) ">
-        {children}
-      </div>
-    </div>
+    </>
   );
 };
 

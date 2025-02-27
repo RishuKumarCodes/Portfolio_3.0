@@ -15,12 +15,14 @@ function About() {
         { y: "100%" },
         {
           y: "0%",
-          stagger: 0.03,
-          ease: "sine.out",
+          stagger: 0.025,
+          duration: 1,
+          ease: "expo.out",
           scrollTrigger: {
             trigger: aboutRef.current,
             scroller: ".content-wrapper",
-            start: "top 80%",
+            start: "top 77%",
+            toggleActions: "restart reset restart reset",
           },
         }
       );
@@ -61,18 +63,20 @@ function About() {
         "
       >
         <p
-          className="w-[65%] max-[768px]:w-full flex flex-row flex-wrap"
-          style={{ fontSize: "max(1.8vw, 1.15rem)" }}
+          className="w-[65%] max-[768px]:w-full flex flex-row flex-wrap "
+          style={{
+            fontSize: "max(1.87vw, 1.15rem)",
+          }}
         >
-          {`I'm Rishu, an undergrad specializing in full stack web development. I create functional, user-focused applications with a knack for designing clean, intuitive interfaces.`
+          {`I'm Rishu, an undergrad focused on building efficient digital solutions through precise coding and creative problem-solving.`
             .split(" ")
             .map((word, index) => (
               <span
                 key={index}
-                className="wordBox flex w-min pr-[0.8rem] overflow-hidden"
+                className="wordBox flex w-min pr-[0.65rem] overflow-hidden"
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
               >
-                <span className="word w-min whitespace-nowrap">{word} </span>
+                <span className="word w-min whitespace-nowrap" style={{ letterSpacing: "-2px" }}>{word} </span>
               </span>
             ))}
         </p>
@@ -83,8 +87,6 @@ function About() {
             border-b-[1.8vw] border-b-[#00000048] text-[2vw]
             max-[768px]:hidden
           "
-          // data-scroll
-          // data-scroll-speed="0.5"
           data-hover
           data-hover-bounds
         >
@@ -98,8 +100,6 @@ function About() {
             border-b-[1.8vw] border-b-[#00000048] text-[2vw]
             max-[768px]:hidden
           "
-          // data-scroll
-          // data-scroll-speed="0.5"
           data-hover
           data-hover-bounds
         >
@@ -107,6 +107,8 @@ function About() {
           <div data-hover-bounds></div>
         </a>
       </div>
+
+      {/* for small screen */}
       <div className="flex mr-[10%] justify-end gap-[10%] md:hidden">
         <a
           href="#"
