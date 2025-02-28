@@ -16,17 +16,13 @@ const SiteBorder = ({ children }) => {
 
   const contentClasses =
     windowWidth <= 650
-      ? "bg-white"
+      ? "flex-1  h-[100vh] w-100vw bg-(--bg) !overflow-hidden"
       : "flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg)";
 
   return (
     <>
       <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden ">
-        {windowWidth > 650 ? (
-          <Sidebar/>
-        ) : (
-          <></>
-        )}
+        {windowWidth > 650 ? <Sidebar /> : <></>}
         {/* main content */}
         <div className={contentClasses}>{children}</div>
       </div>

@@ -176,7 +176,7 @@ const CursorComponent = () => {
     <>
       <div ref={cursorRef} className="custom-cursor"></div>
       <p ref={projectParaRef} className="project-para-cursor">
-        view case-study
+        case-study
       </p>
     </>
   );

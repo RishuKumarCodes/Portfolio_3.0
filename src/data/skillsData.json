@@ -1,0 +1,55 @@
+{
+    "techStackData": [
+      {
+        "id": "backend",
+        "dataScrollSpeed": "2",
+        "styleOverrides": { "left": "6%", "top": "33%", "transform": "rotate(-12deg)" },
+        "title": "Backend",
+        "items": ["JavaScript", "Node.js", "Express.js", "RESTful APIs"]
+      },
+      {
+        "id": "frontend",
+        "dataScrollSpeed": "0",
+        "styleOverrides": { "left": "25%", "top": "9.3%", "transform": "rotate(7deg)" },
+        "title": "Frontend",
+        "items": ["HTML / CSS", "JavaScript", "React", "Tailwind CSS", "Bootstrap"]
+      },
+      {
+        "id": "tools_tech",
+        "dataScrollSpeed": "-1.2",
+        "styleOverrides": { "left": "55%", "top": "17%", "transform": "rotate(-14deg)" },
+        "title": "Tools & Tech",
+        "items": ["Git", "GitHub", "VS Code", "Linux", "Hoppscotch"]
+      },
+      {
+        "id": "database",
+        "dataScrollSpeed": "1.5",
+        "styleOverrides": { "left": "14%", "top": "65%", "transform": "rotate(14deg)" },
+        "title": "Database",
+        "items": ["SQL", "MongoDB"]
+      },
+      {
+        "id": "languages",
+        "dataScrollSpeed": "1.5",
+        "styleOverrides": { "left": "76%", "top": "55%", "transform": "rotate(-13deg)" },
+        "title": "Languages",
+        "items": ["C / C++", "Java", "JavaScript", "SQL"]
+      },
+      {
+        "id": "ui-ux",
+        "dataScrollSpeed": "2.3",
+        "styleOverrides": { "left": "83.5%", "top": "18%", "transform": "rotate(-4deg)" },
+        "title": "UI/UX",
+        "items": ["Photoshop", "Illustrator", "Figma basics", "Canva"]
+      },
+      {
+        "id": "problem-solving",
+        "dataScrollSpeed": "0",
+        "styleOverrides": { "left": "55%", "bottom": "0%", "transform": "rotate(5deg)" },
+        "title": "Problem-solving",
+        "items": ["Data Structures", "Algorithms", "LeetCode"]
+      }
+    ],
+    "skillsTextData": "Driven by continuous learning, I've built a strong full-stack foundation—excelling in efficient RESTful APIs, modern JavaScript frameworks, and robust Git version control. I tackle challenging LeetCode problems, and enjoy art and photography as hobbies."
+  }
+  

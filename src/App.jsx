@@ -5,6 +5,7 @@ import About from "./pageSections/About.jsx";
 import CursorComponent from "./components/CursorComponent";
 import LenisScroll from "./components/LenisScroll.jsx";
 import Skills from "./pageSections/Skills.jsx";
+import Projects from "./pageSections/Projects.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Hero />
           <About />
           <Skills/>
+          <Projects/>
         </LenisScroll>
       </SiteBorder>
     </>

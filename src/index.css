@@ -22,7 +22,6 @@
 
   font-family: "Atkinson Hyperlegible Mono", serif;
   scrollbar-width: none !important;
-
 }
 
 body,
@@ -58,7 +57,6 @@ a {
 .gsap-marker-end {
   z-index: 9999 !important;
 }
-
 
 @media (max-width: 499px) {
   body {
