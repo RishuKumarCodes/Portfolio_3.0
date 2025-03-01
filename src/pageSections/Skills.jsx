@@ -20,32 +20,12 @@ const TechStackCard = ({
     const cardCenterY = rect.top + rect.height / 2;
     const deltaX = e.clientX - cardCenterX;
     const deltaY = e.clientY - cardCenterY;
-    // Maximum translation in pixels
     const maxTranslation = 20;
-    // Calculate offsets relative to half the width/height
     const xOffset = (deltaX / (rect.width / 2)) * maxTranslation;
     const yOffset = (deltaY / (rect.height / 2)) * maxTranslation;
     gsap.to(cardRef.current, {
       x: xOffset,
       y: yOffset,
-      ease: "power3.out",
-      duration: 0.3,
-    });
-  };
-
-  const handleMouseEnter = () => {
-    gsap.to(cardRef.current, {
-      scale: 1,
-      ease: "power3.out",
-      duration: 0.3,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    gsap.to(cardRef.current, {
-      x: 0,
-      y: 0,
-      scale: 1,
       ease: "power3.out",
       duration: 0.3,
     });
@@ -57,26 +37,27 @@ const TechStackCard = ({
       id={id}
       data-scroll
       data-scroll-speed={dataScrollSpeed}
-      className="absolute aspect-[231/250] w-[13vw] m-[10px] bg-[#fce8e8] border border-[var(--stroke)] shadow-[2px_2px_0_var(--stroke)] p-4 text-center"
+      className="absolute aspect-[231/250] w-[13vw] bg-[#ffeded] shadow-[9px_9px_46px_#0000003d,inset_50px_50px_82px_#f1cbcb] p-4 text-center rounded-(--brad) !scale-90"
       style={styleOverrides}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() =>
+        gsap.to(cardRef.current, {
+          ease: "power3.out",
+          duration: 0.3,
+        })
+      }
+      onMouseLeave={() =>
+        gsap.to(cardRef.current, {
+          x: 0,
+          y: 0,
+          ease: "power3.out",
+          duration: 0.3,
+        })
+      }
     >
-      <h3
-        className="text-[1.63vw] font-black mb-[5%] text-white"
-        style={{
-          WebkitTextStroke: "1px var(--stroke)",
-          textShadow: "2px 2px 0 var(--stroke)",
-        }}
-      >
-        {title}
-      </h3>
+      <h3 className="text-(--pcol) font-bold text-[1.3vw] my-3">{title}</h3>
       {items.map((item, index) => (
-        <p
-          key={index}
-          className="text-[1vw] my-[0.3rem] tracking-[0.7px] opacity-[0.7] "
-        >
+        <p key={index} className="text-[1vw] tracking-[0.7px] text-zinc-700">
           {item}
         </p>
       ))}
@@ -84,193 +65,133 @@ const TechStackCard = ({
   );
 };
 
-const TechStackLargeScreen = () => {
-  return (
-    <div
-      className="tech-stack hidden md:block h-full w-full absolute top-0 left-0 z-[-4] opacity-0"
-      data-scroll
-      style={{ "--stroke": "#bd6666", "--tech-bg": "#fce8e8" }}
-    >
-      {data.techStackData.map((card) => (
-        <TechStackCard
-          key={card.id}
-          id={card.id}
-          dataScrollSpeed={card.dataScrollSpeed}
-          styleOverrides={card.styleOverrides}
-          title={card.title}
-          items={card.items}
-        />
-      ))}
-    </div>
-  );
-};
+const TechStackLargeScreen = () => (
+  <div
+    className="tech-stack hidden md:block h-full w-full absolute top-0 left-0"
+    data-scroll
+    style={{ "--stroke": "var(--pcol)", "--tech-bg": "#fce8e8" }}
+  >
+    {data.techStackData.map((card) => (
+      <TechStackCard key={card.id} {...card} />
+    ))}
+  </div>
+);
 
-const TechStackSmallScreen = () => {
-  return (
-    <div className="tech-stack-small-width flex items-center overflow-y-scroll md:hidden">
-      {data.techStackData.map((card, index) => (
-        <div
-          key={index}
-          className="flex-shrink-0 w-[150px] h-[160px] bg-[rgb(255,211,211)] m-[10px] p-4"
-          style={{ borderRadius: "var(--border-radius)" }}
-        >
-          <h3 className="text-base mb-2">{card.title}</h3>
-          {card.items.map((item, idx) => (
-            <p key={idx} className="text-[12px]">
-              {item}
-            </p>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const SkillsContent = () => {
-  return (
-    <div className="content flex flex-col justify-center h-full w-full p-[13%] pb-[3%] md:w-[40%] md:m-auto md:p-0">
-      <div className="heading overflow-hidden">
-        <h1
-          className="relative top-[100%] text-[6vw]  text-(--pcol)"
-          style={{
-            fontFamily: "'MuseoModerno', sans-serif",
-            textShadow: "0 0 0 black",
-            transition: "100ms",
-          }}
-        >
-          Skills
-        </h1>
-      </div>
-      <p className="text-[max(1.3vw,1rem)] flex flex-wrap">
-        {data.skillsTextData.split(" ").map((word, index) => (
-          <p
-            key={index}
-            className="wordBox flex flex-row w-min pr-[0.8rem] overflow-hidden"
-            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
-          >
-            <p className="word relative whitespace-nowrap w-min top-[100%]">
-              {word}{" "}
-            </p>
+const TechStackSmallScreen = () => (
+  <div className="tech-stack-small-width flex items-center overflow-y-scroll md:hidden mt-4">
+    {data.techStackData.map((card, index) => (
+      <div
+        key={index}
+        className="flex-shrink-0 w-[150px] h-[160px] bg-[rgb(255,211,211)] m-[10px] p-4 !rounded-(--brad)"
+        style={{ borderRadius: "var(--border-radius)" }}
+      >
+        <h3 className="text-base mb-2">{card.title}</h3>
+        {card.items.map((item, idx) => (
+          <p key={idx} className="text-[12px]">
+            {item}
           </p>
         ))}
-      </p>
+      </div>
+    ))}
+  </div>
+);
+
+const SkillsContent = () => (
+  <div className="content">
+    <div className="heading z-0 overflow-hidden  w-[54vw] ">
+      <h1
+        className="relative stroke-text text-[20vw] text-(--bg) font-[600] mb-[-19%] md:mt-[-10%] w-[54vw]"
+        style={{
+          fontFamily: "'MuseoModerno', sans-serif",
+        }}
+      >
+        Skills
+      </h1>
     </div>
-  );
-};
+    <p className="text-[max(1.6vw,1rem)] flex flex-wrap px-[5%] md:p-10 py-4 md:w-[52vw]">
+      {data.skillsTextData.split(" ").map((word, index) => (
+        <span
+          key={index}
+          className="wordBox w-min pr-[0.65rem] overflow-hidden font-[400]"
+          style={{ letterSpacing: "-2px" }}
+        >
+          <span className="word relative whitespace-nowrap w-min top-[100%]">
+            {word}
+          </span>
+        </span>
+      ))}
+    </p>
+  </div>
+);
 
 function Skills() {
-  const imgBorder = useRef(null);
+  const skillsRef = useRef(null);
 
   useEffect(() => {
-    const textEffect = () => {
-      // Select the nested <p> elements for the word animation
-      const words = document.querySelectorAll(".content p p p");
+    setTimeout(() => {
+      document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+          gsap.fromTo(
+            ".content h1",
+            { left: "10%" },
+            {
+              left: "0%",
+              scrollTrigger: {
+                trigger: ".content",
+                scrub: true,
+              },
+            }
+          );
+          gsap.fromTo(
+            ".content p span span",
+            { top: "100%" },
+            {
+              top: "0%",
+              stagger: 0.015,
+              ease: "expo.out",
+              duration: 0.67,
+              delay: "0 !important",
+              scrollTrigger: {
+                trigger: skillsRef.current,
+                scroller: ".content-wrapper",
+                start: "top 67%",
+                toggleActions: "restart reset restart reset",
+              },
+            },
+            "<"
+          );
 
-      gsap.fromTo(
-        ".content h1",
-        { top: "200%", opacity: 0 },
-        {
-          top: "0%",
-          opacity: 1,
-          duration: 0.2,
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: imgBorder.current,
-            start: "top 100%",
-            toggleActions: "restart reset restart reset",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        words,
-        { top: "100%" },
-        {
-          top: "0%",
-          stagger: 0.02,
-          delay: 0.3,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: imgBorder.current,
-            start: "top 100%",
-            toggleActions: "restart reset restart reset",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".tech-stack",
-        { opacity: 0 },
-        {
-          opacity: 1,
-          delay: 0.5,
-          duration: 1.5,
-          scrollTrigger: {
-            trigger: imgBorder.current,
-            start: "top 100%",
-            toggleActions: "restart reset restart reset",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".tech-stack",
-        { y: "10%" },
-        {
-          y: "0%",
-          delay: 0.5,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: imgBorder.current,
-            start: "top 100%",
-            toggleActions: "restart reset restart reset",
-          },
-        }
-      );
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          textEffect();
-        }
-      },
-      { threshold: 0 }
-    );
-
-    const skillsElement = document.querySelector("#skills");
-    if (skillsElement) {
-      observer.observe(skillsElement);
-    }
-
-    gsap.utils.toArray(".tech-stack [data-scroll-speed]").forEach((card) => {
-      const speed = parseFloat(card.getAttribute("data-scroll-speed"));
-      gsap.to(card, {
-        yPercent: -20 * speed,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+          gsap.utils
+            .toArray(".tech-stack [data-scroll-speed]")
+            .forEach((card) => {
+              const speed = parseFloat(card.getAttribute("data-scroll-speed"));
+              gsap.to(card, {
+                yPercent: -20 * speed,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  scroller: ".content-wrapper",
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              });
+            });
+        });
       });
-    });
 
-    return () => {
-      if (skillsElement) {
-        observer.unobserve(skillsElement);
-      }
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
+      return () => {
+        ScrollTrigger.getAll().forEach((st) => st.kill());
+      };
+    }, 4000);
   }, []);
 
   return (
     <>
       <div
-        ref={imgBorder}
+        ref={skillsRef}
         id="skills"
-        className="aspect-[16/9] w-full relative overflow-hidden z-50"
+        className=" md:aspect-[16/9] w-full relative overflow-hidden z-50"
       >
         <TechStackLargeScreen />
         <SkillsContent />

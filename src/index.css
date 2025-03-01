@@ -2,6 +2,7 @@
 
 :root {
   --pcol: #942929;
+  /* --pcol: #0000003d; */
   /* --pcol: #8a2222; */
   /*primary color*/
   --scol: #2ecc71;
@@ -35,6 +36,10 @@ html {
 a {
   color: black;
   text-decoration: none;
+}
+
+.stroke-text {
+  -webkit-text-stroke: 2px var(--pcol); /* Outline width and color */
 }
 
 /* text-selection */

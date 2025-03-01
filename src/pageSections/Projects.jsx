@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
+import "./projects.css";
 
 import browserTab from "/browserTab.svg";
 import proj1 from "/projects/portfolio.png";
@@ -8,21 +9,14 @@ import proj3 from "/projects/spotify.png";
 import proj4 from "/projects/harryPotter.png";
 
 function Projects() {
+  // Text animation effect using Intersection Observer
   useEffect(() => {
     const textEffect = () => {
       const words = document.querySelectorAll("#projects div");
       gsap.fromTo(
         words,
-        {
-          opacity: 0,
-          y: 150,
-        },
-        {
-          opacity: 1,
-          stagger: 0.16,
-          y: 0,
-          ease: "sine.out",
-        }
+        { opacity: 0, y: 150 },
+        { opacity: 1, stagger: 0.16, y: 0, ease: "sine.out" }
       );
     };
 
@@ -35,17 +29,26 @@ function Projects() {
       { threshold: 0.2 }
     );
 
-    const aboutElement = document.querySelector("#projects");
-    if (aboutElement) {
-      observer.observe(aboutElement);
+    const projectsSection = document.querySelector("#projects");
+    if (projectsSection) {
+      observer.observe(projectsSection);
     }
 
-    // for custom cursor:
+    // Cleanup the observer on unmount
+    return () => {
+      if (projectsSection) {
+        observer.unobserve(projectsSection);
+      }
+    };
+  }, []);
+
+  // Custom cursor effect for projects
+  useEffect(() => {
     const cursor = document.querySelector(".custom-cursor");
     const projectParaRef = document.querySelector(".project-para-cursor");
     const projects = document.querySelectorAll(".project");
 
-    const handleMouseEnter = (project) => {
+    const handleMouseEnter = () => {
       if (cursor) {
         gsap.to(cursor, {
           width: "10rem",
@@ -53,6 +56,8 @@ function Projects() {
           ease: "power2.out",
           mixBlendMode: "normal",
           background: "black",
+          transformOrigin: "center",
+          scale: 0.9, // Slightly reduces stretch while growing
           duration: 0.3,
         });
       }
@@ -69,6 +74,8 @@ function Projects() {
           ease: "power2.out",
           mixBlendMode: "difference",
           background: "#ffffff",
+          transformOrigin: "center",
+          scale: 1, // Reset scale to normal
           duration: 0.3,
         });
       }
@@ -78,83 +85,42 @@ function Projects() {
     };
 
     projects.forEach((project) => {
-      project.addEventListener("mouseenter", () => handleMouseEnter(project));
+      project.addEventListener("mouseenter", handleMouseEnter);
       project.addEventListener("mouseleave", handleMouseLeave);
     });
 
     return () => {
-      if (aboutElement) {
-        observer.unobserve(aboutElement);
-      }
       projects.forEach((project) => {
-        project.removeEventListener("mouseenter", () =>
-          handleMouseEnter(project)
-        );
+        project.removeEventListener("mouseenter", handleMouseEnter);
         project.removeEventListener("mouseleave", handleMouseLeave);
-        if (projectParaRef) {
-          projectParaRef.style.visibility = "hidden";
-        }
       });
+      if (projectParaRef) {
+        projectParaRef.style.visibility = "hidden";
+      }
     };
   }, []);
 
   return (
     <div id="projects">
-      <h1
-        className="text-[6vw] font-[Iceland] text-brown [text-shadow:0_0_0_black] transition duration-300 mt-12 mb-8 mx-[14%] hover:[text-shadow:-3px_3px_0_black]"
-      >
-        PROJECTS
-      </h1>
-      <div className="flex w-full px-[14%] gap-[4%] max-[500px]:flex-col max-[500px]:px-0 border">
-        <div className="project aspect-[16/9.005] mb-16 rounded-[1rem] overflow-hidden relative opacity-0 max-[500px]:w-[80%] max-[500px]:m-[5%] max-[500px]:even:ml-[15%]">
-          <img
-            className="bg absolute left-0 z-10"
-            src={browserTab}
-            alt=""
-          />
-          <img
-            className="element absolute top-[6%] left-0 object-contain h-full z-8"
-            src={proj1}
-            alt=""
-          />
+      <h1 className="stroke-text">Projects</h1>
+      <div>
+        <div className="project">
+          <img className="bg" src={browserTab} alt="Browser Tab" />
+          <img className="element" src={proj1} alt="Project 1" />
         </div>
-        <div className="project aspect-[16/9.005] mb-16 rounded-[1rem] overflow-hidden relative opacity-0 max-[500px]:w-[80%] max-[500px]:m-[5%] max-[500px]:even:ml-[15%]">
-          <img
-            className="bg absolute left-0 z-10"
-            src={browserTab}
-            alt=""
-          />
-          <img
-            className="element absolute top-[6%] left-0 object-contain h-full z-8"
-            src={proj2}
-            alt=""
-          />
+        <div className="project">
+          <img className="bg" src={browserTab} alt="Browser Tab" />
+          <img className="element" src={proj2} alt="Project 2" />
         </div>
       </div>
-      <div className="flex w-full px-[14%] gap-[4%] max-[500px]:flex-col max-[500px]:px-0">
-        <div className="project aspect-[16/9.005] mb-16 rounded-[1rem] overflow-hidden relative opacity-0 max-[500px]:w-[80%] max-[500px]:m-[5%] max-[500px]:even:ml-[15%]">
-          <img
-            className="bg absolute left-0 z-10"
-            src={browserTab}
-            alt=""
-          />
-          <img
-            className="element absolute top-[6%] left-0 object-contain h-full z-8"
-            src={proj3}
-            alt=""
-          />
+      <div>
+        <div className="project">
+          <img className="bg" src={browserTab} alt="Browser Tab" />
+          <img className="element" src={proj3} alt="Project 3" />
         </div>
-        <div className="project aspect-[16/9.005] mb-16 rounded-[1rem] overflow-hidden relative opacity-0 max-[500px]:w-[80%] max-[500px]:m-[5%] max-[500px]:even:ml-[15%]">
-          <img
-            className="bg absolute left-0 z-10"
-            src={browserTab}
-            alt=""
-          />
-          <img
-            className="element absolute top-[6%] left-0 object-contain h-full z-8"
-            src={proj4}
-            alt=""
-          />
+        <div className="project">
+          <img className="bg" src={browserTab} alt="Browser Tab" />
+          <img className="element" src={proj4} alt="Project 4" />
         </div>
       </div>
     </div>

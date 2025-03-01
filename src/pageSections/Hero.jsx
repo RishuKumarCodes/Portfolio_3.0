@@ -228,6 +228,7 @@ function Hero() {
           ) : (
             <video
               ref={videoRef}
+              poster="/consoleLogImg.jpg"
               className="h-full w-full object-cover object-left"
               autoPlay
               loop
@@ -237,6 +238,7 @@ function Hero() {
             >
               <source src="/consoleLogs.mp4" type="video/mp4" />
             </video>
+            
           )}
         </div>
       </section>

@@ -97,7 +97,7 @@ function About() {
           href="#"
           className="
             h-[9vw] w-[9vw] flex items-center justify-center text-black font-medium
-            border-b-[1.8vw] border-b-[#00000048] text-[2vw]
+            border-b-[1.8vw] border-b-[#00000048] text-[2vw] whitespace-nowrap
             max-[768px]:hidden
           "
           data-hover
