@@ -1,51 +1,32 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import gsap from "gsap";
-import "./projects.css";
-
+import data from "../data/ProjectsData.json";
+const projData = data.proj;
 import browserTab from "/browserTab.svg";
-import proj1 from "/projects/portfolio.png";
-import proj2 from "/projects/baasskyy.png";
-import proj3 from "/projects/spotify.png";
-import proj4 from "/projects/harryPotter.png";
+import ProjectPopup from "./ProjectPopup";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Projects() {
-  // Text animation effect using Intersection Observer
-  useEffect(() => {
-    const textEffect = () => {
-      const words = document.querySelectorAll("#projects div");
-      gsap.fromTo(
-        words,
-        { opacity: 0, y: 150 },
-        { opacity: 1, stagger: 0.16, y: 0, ease: "sine.out" }
-      );
-    };
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const projectsToShow = projData.slice(0, 2);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          textEffect();
-        }
-      },
-      { threshold: 0.2 }
-    );
+  const openPopup = (project) => {
+    setSelectedProject(project);
+    setPopupOpen(true);
+  };
 
-    const projectsSection = document.querySelector("#projects");
-    if (projectsSection) {
-      observer.observe(projectsSection);
-    }
-
-    // Cleanup the observer on unmount
-    return () => {
-      if (projectsSection) {
-        observer.unobserve(projectsSection);
-      }
-    };
-  }, []);
+  const closePopup = () => {
+    setPopupOpen(false);
+    setSelectedProject(null);
+  };
 
   // Custom cursor effect for projects
   useEffect(() => {
-    const cursor = document.querySelector(".custom-cursor");
-    const projectParaRef = document.querySelector(".project-para-cursor");
+    const cursor = document.querySelector(".proj-cursor");
+    const projectParaRef = document.querySelector(".proj-cur-txt");
     const projects = document.querySelectorAll(".project");
 
     const handleMouseEnter = () => {
@@ -57,7 +38,7 @@ function Projects() {
           mixBlendMode: "normal",
           background: "black",
           transformOrigin: "center",
-          scale: 0.9, // Slightly reduces stretch while growing
+          scale: 0.9,
           duration: 0.3,
         });
       }
@@ -75,7 +56,7 @@ function Projects() {
           mixBlendMode: "difference",
           background: "#ffffff",
           transformOrigin: "center",
-          scale: 1, // Reset scale to normal
+          scale: 1,
           duration: 0.3,
         });
       }
@@ -98,33 +79,69 @@ function Projects() {
         projectParaRef.style.visibility = "hidden";
       }
     };
-  }, []);
+  }, [projectsToShow]);
 
   return (
-    <div id="projects">
-      <h1 className="stroke-text">Projects</h1>
-      <div>
-        <div className="project">
-          <img className="bg" src={browserTab} alt="Browser Tab" />
-          <img className="element" src={proj1} alt="Project 1" />
+    <>
+      {popupOpen && (
+        <ProjectPopup
+          selectedProject={selectedProject}
+          closePopup={closePopup}
+        />
+      )}
+
+      <div
+        id="projects"
+        className="bg-gradient-to-b from-[#fce4e4] to-[var(--bg)] mt-[10rem]"
+      >
+        <h1 className="text-stroke-heading mx-[5%] mb-[-7%]">Projects</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full px-[3%] gap-[3%] mb-12">
+          {projectsToShow.map((project) => (
+            <section
+              key={project.id}
+              className={`${project.bg} w-full px-10 py-36`}
+            >
+              <figure
+                className="project w-full !aspect-[16/9] overflow-hidden relative rounded-xl mb-36 cursor-pointer"
+                onClick={() => openPopup(project)}
+              >
+                <img className="absolute z-10" src={browserTab} alt="Tab" />
+                <img
+                  className="absolute top-[6%] px-1 w-full"
+                  src={project.image}
+                  alt={project.name}
+                />
+              </figure>
+              <h1 className="border-b border-black/20 font-bold text-[3vw]">
+                {project.name}
+              </h1>
+              <div className="flex justify-between">
+                <button className="text-[1.1vw] hover:underline cursor-pointer">
+                  Live site
+                </button>
+                <span className="text-[1.1vw]">{project.date}</span>
+              </div>
+            </section>
+          ))}
         </div>
-        <div className="project">
-          <img className="bg" src={browserTab} alt="Browser Tab" />
-          <img className="element" src={proj2} alt="Project 2" />
+        <div className="w-full flex justify-center ">
+          <a
+            href="#"
+            className="text-xl font-semibold flex gap-3 items-center m-8 border-b border-transparent hover:border-black"
+            data-magnet-btn-only
+            data-hover-bounds
+          >
+            More Projects{" "}
+            <img src="/down-arrow.svg" alt="" className="size-5 -rotate-90" />
+            <div data-hover-bounds></div>
+          </a>
         </div>
       </div>
-      <div>
-        <div className="project">
-          <img className="bg" src={browserTab} alt="Browser Tab" />
-          <img className="element" src={proj3} alt="Project 3" />
-        </div>
-        <div className="project">
-          <img className="bg" src={browserTab} alt="Browser Tab" />
-          <img className="element" src={proj4} alt="Project 4" />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
 export default Projects;
+
+// Todo: fix the magnetic small button, fix the cursorComponent.jsx

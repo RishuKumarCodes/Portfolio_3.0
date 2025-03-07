@@ -1,0 +1,120 @@
+{
+  "proj": [
+    {
+      "id": 1,
+      "name": "Portfolio",
+      "bg": "bg-[#97252571]",
+      "image": "/projects/portfolio.png",
+      "date": "20.4.2024",
+      "Visit": "https://github.com/RishuKumarCodes/",
+      "repo": "https://github.com/RishuKumarCodes/",
+      "Type": "Full stack MERN",
+      "visuals": [
+        "/images/screenshot1.png",
+        "/images/diagram1.png",
+        "/images/diagram2.png"
+      ],
+      "features": [
+        "Responsive Design",
+        "Dark Mode",
+        "Smooth Animations",
+        "Dynamic Content"
+      ],
+      "details": {
+        "overview": "The challenge was to design a responsive and fast-loading website that effectively showcases the developer's work.",
+        "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
+        "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
+        "outcome": "Boosted engagement and positive feedback from potential employers.",
+        "Learnings": "React, JS Tailwind ",
+        "reflectionsAndFutureImprovements": "none"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Baasskyy",
+      "bg": "bg-[#3656857a]",
+      "image": "/projects/baasskyy.png",
+      "date": "20.6.2024",
+      "Visit": "https://github.com/RishuKumarCodes/",
+      "repo": "https://github.com/RishuKumarCodes/",
+      "Type": "Full stack MERN",
+      "visuals": [
+        "/images/screenshot1.png",
+        "/images/diagram1.png",
+        "/images/diagram2.png"
+      ],
+      "features": [
+        "Responsive Design",
+        "Dark Mode",
+        "Smooth Animations",
+        "Dynamic Content"
+      ],
+      "details": {
+        "overview": "The challenge was to design a responsive and fast-loading website that effectively showcases the developer's work.",
+        "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
+        "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
+        "outcome": "Boosted engagement and positive feedback from potential employers.",
+        "Learnings": "React, JS Tailwind ",
+        "reflectionsAndFutureImprovements": "none"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Spotify",
+      "bg": "bg-[#00d41c75]",
+      "image": "/projects/spotify.png",
+      "date": "20.1.2025",
+      "Visit": "https://github.com/RishuKumarCodes/",
+      "repo": "https://github.com/RishuKumarCodes/",
+      "Type": "Full stack MERN",
+      "visuals": [
+        "/images/screenshot1.png",
+        "/images/diagram1.png",
+        "/images/diagram2.png"
+      ],
+      "features": [
+        "Responsive Design",
+        "Dark Mode",
+        "Smooth Animations",
+        "Dynamic Content"
+      ],
+      "details": {
+        "overview": "The challenge was to design a responsive and fast-loading website that effectively showcases the developer's work.",
+        "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
+        "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
+        "outcome": "Boosted engagement and positive feedback from potential employers.",
+        "Learnings": "React, JS Tailwind ",
+        "reflectionsAndFutureImprovements": "none"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Harry-Potter",
+      "bg": "bg-[#d6803a57]",
+      "image": "/projects/harryPotter.png",
+      "date": "20.9.2023",
+      "Visit": "https://github.com/RishuKumarCodes/",
+      "repo": "https://github.com/RishuKumarCodes/",
+      "Type": "Full stack MERN",
+      "visuals": [
+        "/images/screenshot1.png",
+        "/images/diagram1.png",
+        "/images/diagram2.png"
+      ],
+      "features": [
+        "Responsive Design",
+        "Dark Mode",
+        "Smooth Animations",
+        "Dynamic Content"
+      ],
+      "details": {
+        "overview": "The challenge was to design a responsive and fast-loading website that effectively showcases the developer's work.",
+        "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
+        "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
+        "outcome": "Boosted engagement and positive feedback from potential employers.",
+        "Learnings": "React, JS Tailwind ",
+        "reflectionsAndFutureImprovements": "none"
+      }
+    }
+  ]
+}

@@ -21,7 +21,7 @@ const SiteBorder = ({ children }) => {
 
   return (
     <>
-      <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden ">
+      <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
         {windowWidth > 650 ? <Sidebar /> : <></>}
         {/* main content */}
         <div className={contentClasses}>{children}</div>

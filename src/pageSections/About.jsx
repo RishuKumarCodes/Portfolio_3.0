@@ -57,9 +57,9 @@ function About() {
         ref={aboutRef}
         id="about"
         className="
-          flex items-center justify-between p-[14%] gap-12
-          max-[768px]:pb-[11px]
-          max-[500px]:pt-[13%] max-[500px]:pr-[5%] max-[500px]:pb-[11px] max-[500px]:pl-[5%]
+            flex items-center justify-between p-[14%] gap-12 
+            max-[768px]:pb-[11px] 
+            max-[500px]:p-[13%_5%_11%]
         "
       >
         <p
@@ -76,33 +76,20 @@ function About() {
                 className="wordBox flex w-min pr-[0.65rem] overflow-hidden"
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
               >
-                <span className="word w-min whitespace-nowrap" style={{ letterSpacing: "-2px" }}>{word} </span>
+                <span
+                  className="word w-min whitespace-nowrap"
+                  style={{ letterSpacing: "-2px" }}
+                >
+                  {word}{" "}
+                </span>
               </span>
             ))}
         </p>
-        <a
-          href="#"
-          className="
-            h-[9vw] w-[9vw] flex items-center justify-center text-black font-medium
-            border-b-[1.8vw] border-b-[#00000048] text-[2vw]
-            max-[768px]:hidden
-          "
-          data-hover
-          data-hover-bounds
-        >
+        <a href="#" className="magnetic-btn" data-hover data-hover-bounds>
           Get CV
           <div data-hover-bounds></div>
         </a>
-        <a
-          href="#"
-          className="
-            h-[9vw] w-[9vw] flex items-center justify-center text-black font-medium
-            border-b-[1.8vw] border-b-[#00000048] text-[2vw] whitespace-nowrap
-            max-[768px]:hidden
-          "
-          data-hover
-          data-hover-bounds
-        >
+        <a href="#" className="magnetic-btn" data-hover data-hover-bounds>
           Hire me
           <div data-hover-bounds></div>
         </a>
@@ -112,13 +99,13 @@ function About() {
       <div className="flex mr-[10%] justify-end gap-[10%] md:hidden">
         <a
           href="#"
-          className="h-[90px] w-[90px] bg-[rgb(255,217,217)] text-black flex items-center justify-center rounded-full"
+          className="size-[90px] bg-[rgb(255,217,217)] text-black flex items-center justify-center rounded-full"
         >
           Get CV
         </a>
         <a
           href="#"
-          className="h-[90px] w-[90px] bg-[rgb(255,217,217)] text-black flex items-center justify-center rounded-full"
+          className="size-[90px] bg-[rgb(255,217,217)] text-black flex items-center justify-center rounded-full"
         >
           Hire me
         </a>

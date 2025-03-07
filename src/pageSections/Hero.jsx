@@ -183,15 +183,11 @@ function Hero() {
         {/* Images */}
         <figure className="img relative " ref={img}>
           <img
-            className="img_1 relative object-cover top-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
+            className="img_1 relative img-base"
             src={bgImg}
             alt="Background"
           />
-          <img
-            className="img_2 absolute object-cover top-0 left-0 max-w-full min-h-[1080px] scale-[101%] w-(--img-w) h-(--img-h) object-top overflow-visible"
-            src={subImg}
-            alt="Subject"
-          />
+          <img className="img_2 absolute img-base" src={subImg} alt="Subject" />
         </figure>
 
         {/* Text */}
@@ -217,7 +213,7 @@ function Hero() {
         className="absolute bottom-0 h-(--leftbox-h) w-(--leftbox-w) bg-(--bg) rounded-tr-(--mrad) z-2"
         ref={leftBoxRef}
       >
-        <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
+        <div className="round-edge"></div>
         <div className="mt-(--gap) w-[27vw] h-[37vh] rounded-(--brad) overflow-hidden">
           {!showVideo || videoError ? (
             <img
@@ -238,7 +234,6 @@ function Hero() {
             >
               <source src="/consoleLogs.mp4" type="video/mp4" />
             </video>
-            
           )}
         </div>
       </section>
@@ -248,23 +243,17 @@ function Hero() {
         className="flex ml-auto text-(--pcol) text-[7.3rem] w-(--hilight-w)"
         ref={highlightRef}
       >
-        <div className="absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw)"></div>
+        <div className="round-edge"></div>
         <p
           className="whitespace-nowrap animate-[moveHighlight_25s_linear_infinite] z-1 flex items-center"
           style={{ fontFamily: "Reenie Beanie" }}
         >
-          based on bihar{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
-          aspiring software developer{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
-          open source{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
-          based on bihar{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
-          aspiring software developer{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
-          open source{" "}
-          <span className="text-gray-800 text-[5rem] px-7">&#9679;</span>
+          based on bihar <span className="strip-dot">&#9679;</span>
+          aspiring software developer <span className="strip-dot">&#9679;</span>
+          open source <span className="strip-dot">&#9679;</span>
+          based on bihar <span className="strip-dot">&#9679;</span>
+          aspiring software developer <span className="strip-dot">&#9679;</span>
+          open source <span className="strip-dot">&#9679;</span>
         </p>
       </section>
     </div>

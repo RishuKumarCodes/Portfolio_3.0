@@ -18,6 +18,12 @@
   --edge-sdw: calc(-1 * var(--gap)) var(--gap) 0 var(--bg);
   user-select: none;
 }
+.img-base {
+  @apply object-cover max-w-full min-h-[1080px] scale-[101%] object-top overflow-visible;
+  top: 0;
+  width: var(--img-w);
+  height: var(--img-h);
+}
 
 .image-section .text {
   height: min-content;
@@ -28,7 +34,9 @@
     text-shadow: -4px 3px 0 rgb(0, 0, 0);
   }
 }
-
+.round-edge {
+  @apply absolute w-(--edge-w) h-(--edge-h) rounded-full top-(--edge-pos-t) left-[-1px] shadow-(--edge-sdw);
+}
 @media (max-width: 768px) {
   .hero-section .text {
     bottom: 4.5%;
@@ -46,6 +54,11 @@
       bottom: 0;
     }
   }
+}
+
+.strip-dot {
+  @apply text-[5rem] px-[7px];
+  color: #1d1d1d;
 }
 
 @media (max-width: 500px) {

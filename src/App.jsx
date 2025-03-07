@@ -15,8 +15,9 @@ function App() {
         <LenisScroll>
           <Hero />
           <About />
-          <Skills/>
-          <Projects/>
+          <Skills />
+          <Projects />
+          <div className="h-screen"></div>
         </LenisScroll>
       </SiteBorder>
     </>

@@ -19,8 +19,6 @@
 
 * {
   box-sizing: border-box;
-  /* font-family: "Source Code Pro", monospace; */
-
   font-family: "Atkinson Hyperlegible Mono", serif;
   scrollbar-width: none !important;
 }
@@ -38,8 +36,24 @@ a {
   text-decoration: none;
 }
 
-.stroke-text {
-  -webkit-text-stroke: 2px var(--pcol); /* Outline width and color */
+.magnetic-btn {
+  @apply size-[9vw] flex items-center justify-center text-black font-medium
+  border-b-[1.8vw] border-b-[#00000048] text-[2vw] text-nowrap;
+}
+
+@media (max-width: 768px) {
+  .magnetic-btn {
+    display: none;
+  }
+}
+
+.text-stroke-heading {
+  font-size: 20vw;
+  font-family: "MuseoModerno", sans-serif;
+  color: transparent;
+  font-weight: 600;
+  position: relative;
+  -webkit-text-stroke: 2px var(--pcol);
 }
 
 /* text-selection */
@@ -47,13 +61,6 @@ a {
   background-color: brown;
   color: white;
   text-shadow: -1px 1px 2px #000000d7;
-}
-
-.content-wrapper {
-  height: 100%;
-  position: relative;
-  overflow: auto;
-  will-change: transform;
 }
 
 .gsap-marker-scroller-start,

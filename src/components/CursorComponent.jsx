@@ -1,7 +1,6 @@
-// CursorComponent.js
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import "./CursorComponent.css";
+import "../styles/CursorComponent.css";
 import { vec2 } from "vecteur";
 
 const CursorComponent = () => {
@@ -75,10 +74,12 @@ const CursorComponent = () => {
 
           this.position.target.x = cx + dx * 0.15;
           this.position.target.y = cy + dy * 0.15;
-
-          // this changes the size of cursor on hover:
-          this.scale.target = (window.innerWidth * 0.45) / 100;
-
+          if (!this.hoverEl.hasAttribute("data-magnet-btn-only")) {
+            // this changes the size of cursor on hover:
+            this.scale.target = (window.innerWidth * 0.45) / 100;
+          }else {
+            this.scale.target = 1;
+          }
           const angle = Math.atan2(dy, dx) * (180 / Math.PI);
           const distance = Math.sqrt(dx * dx + dy * dy) * 0.01;
 
@@ -100,7 +101,9 @@ const CursorComponent = () => {
       }
 
       addListeners() {
-        const hoverElements = document.querySelectorAll("[data-hover]");
+        const hoverElements = document.querySelectorAll(
+          "[data-hover], [data-magnet-btn-only]"
+        );
         hoverElements.forEach((hoverEl) => {
           const hoverBoundsEl =
             hoverEl.querySelector("[data-hover-bounds]") || hoverEl;
@@ -140,9 +143,63 @@ const CursorComponent = () => {
       }
     }
 
+    // cursor for project-popup section && it also contains small-magnet-button functionality.
     const cursor = new Cursor(cursorRef.current);
 
-    const animateProjectParaCursor = (x, y) => {
+    const handlePointerOver = (event) => {
+      const hoverEl = event.target.closest("[data-hover]");
+      if (hoverEl) {
+        const hoverBoundsEl =
+          hoverEl.querySelector("[data-hover-bounds]") || hoverEl;
+        cursor.isHovered = true;
+        cursor.hoverEl = hoverBoundsEl;
+      }
+    };
+
+    const handlePointerOut = (event) => {
+      const hoverEl = event.target.closest("[data-hover]");
+      if (hoverEl) {
+        cursor.isHovered = false;
+        cursor.hoverEl = null;
+      }
+    };
+
+    document.addEventListener("pointerover", handlePointerOver);
+    document.addEventListener("pointerout", handlePointerOut);
+
+    const handleDelegatedPointerMove = (event) => {
+      const hoverEl = event.target.closest("[data-hover] , [data-magnet-btn-only]");
+      if (hoverEl && hoverEl.tagName === "A") {
+        const { clientX: cx, clientY: cy } = event;
+        const { height, width, left, top } = hoverEl.getBoundingClientRect();
+        const x = cx - (left + width / 2);
+        const y = cy - (top + height / 2);
+        gsap.to(hoverEl, {
+          x: x * 0.2,
+          y: y * 0.2,
+          duration: 1,
+          ease: "elastic.out(1, 0.3)",
+        });
+      }
+    };
+
+    const handleDelegatedPointerOut = (event) => {
+      const hoverEl = event.target.closest("[data-hover] , [data-magnet-btn-only]");
+      if (hoverEl && hoverEl.tagName === "A") {
+        gsap.to(hoverEl, {
+          x: 0,
+          y: 0,
+          duration: 1,
+          ease: "elastic.out(1, 0.3)",
+        });
+      }
+    };
+
+    document.addEventListener("pointermove", handleDelegatedPointerMove);
+    document.addEventListener("pointerout", handleDelegatedPointerOut);
+
+    // "case-study" text inside the project section (appers on hover) ---------------------
+    const animateProjectHoverCursorTxt = (x, y) => {
       gsap.to(projectParaRef.current, {
         x: x - 4,
         y: y - 15,
@@ -152,6 +209,7 @@ const CursorComponent = () => {
         ease: "power2.out",
       });
     };
+
     function update() {
       cursor.update();
     }
@@ -160,7 +218,7 @@ const CursorComponent = () => {
       const x = event.clientX;
       const y = event.clientY;
       cursor.updateTargetPosition(x, y);
-      animateProjectParaCursor(x, y);
+      animateProjectHoverCursorTxt(x, y);
     }
 
     gsap.ticker.add(update);
@@ -169,13 +227,17 @@ const CursorComponent = () => {
     return () => {
       gsap.ticker.remove(update);
       window.removeEventListener("pointermove", onMouseMove);
+      document.removeEventListener("pointerover", handlePointerOver);
+      document.removeEventListener("pointerout", handlePointerOut);
+      document.removeEventListener("pointermove", handleDelegatedPointerMove);
+      document.removeEventListener("pointerout", handleDelegatedPointerOut);
     };
   }, []);
-
+  // ---------------------------------------------------------------------------------------
   return (
     <>
-      <div ref={cursorRef} className="custom-cursor"></div>
-      <p ref={projectParaRef} className="project-para-cursor">
+      <div ref={cursorRef} className="proj-cursor"></div>
+      <p ref={projectParaRef} className="proj-cur-txt">
         case-study
       </p>
     </>
@@ -183,3 +245,5 @@ const CursorComponent = () => {
 };
 
 export default CursorComponent;
+
+// This code is messed-up but it just works ;)

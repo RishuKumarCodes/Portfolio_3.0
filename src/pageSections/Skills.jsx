@@ -69,7 +69,6 @@ const TechStackLargeScreen = () => (
   <div
     className="tech-stack hidden md:block h-full w-full absolute top-0 left-0"
     data-scroll
-    style={{ "--stroke": "var(--pcol)", "--tech-bg": "#fce8e8" }}
   >
     {data.techStackData.map((card) => (
       <TechStackCard key={card.id} {...card} />
@@ -82,7 +81,7 @@ const TechStackSmallScreen = () => (
     {data.techStackData.map((card, index) => (
       <div
         key={index}
-        className="flex-shrink-0 w-[150px] h-[160px] bg-[rgb(255,211,211)] m-[10px] p-4 !rounded-(--brad)"
+        className="flex-shrink-0 w-[150px] h-[160px] bg-[#ffd3d3] m-[10px] p-4 !rounded-(--brad)"
         style={{ borderRadius: "var(--border-radius)" }}
       >
         <h3 className="text-base mb-2">{card.title}</h3>
@@ -98,9 +97,9 @@ const TechStackSmallScreen = () => (
 
 const SkillsContent = () => (
   <div className="content">
-    <div className="heading z-0 overflow-hidden  w-[54vw] ">
+    <div className="heading z-0 overflow-hidden w-[54vw] ">
       <h1
-        className="relative stroke-text text-[20vw] text-(--bg) font-[600] mb-[-19%] md:mt-[-10%] w-[54vw]"
+        className="text-stroke-heading mb-[-19%] md:mt-[-10%] w-[54vw]"
         style={{
           fontFamily: "'MuseoModerno', sans-serif",
         }}

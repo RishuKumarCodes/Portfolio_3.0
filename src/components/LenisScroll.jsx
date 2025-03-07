@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PropTypes from 'prop-types';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,13 +61,15 @@ const LenisScroll = ({ children }) => {
 
   return (
     <div
-      className="content-wrapper"
+      className="content-wrapper h-[100%] overflow-auto relative"
       ref={scrollContainerRef}
-      style={{ height: "100%", overflow: "auto", position: "relative" }}
     >
       {children}
     </div>
   );
 };
 
+LenisScroll.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default LenisScroll;
