@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../data/skillsData.json";
+import PropTypes from "prop-types";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const TechStackCard = ({
@@ -63,6 +65,14 @@ const TechStackCard = ({
       ))}
     </div>
   );
+};
+
+TechStackCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  dataScrollSpeed: PropTypes.number,
+  styleOverrides: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const TechStackLargeScreen = () => (

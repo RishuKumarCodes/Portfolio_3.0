@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../data/ProjectsData.json";
 const projData = data.proj;
 import browserTab from "/browserTab.svg";
 import ProjectPopup from "./ProjectPopup";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SmBtn } from "../components/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +82,39 @@ function Projects() {
     };
   }, [projectsToShow]);
 
+  // Scrolling effect
+  useEffect(() => {
+    gsap.fromTo(
+      "#projects h1",
+      { left: "0%" },
+      {
+        left: "10%",
+        scrollTrigger: {
+          trigger: "#projects h1",
+          scroller: ".content-wrapper",
+          scrub: true,
+          start: "top 90%",
+        },
+      }
+    );
+    gsap.fromTo(
+      ".projContainer",
+      { top: "-20%" },
+      {
+        top: "12%",
+        scrollTrigger: {
+          trigger: "#projects",
+          scroller: ".content-wrapper",
+          scrub: true,
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
   return (
     <>
       {popupOpen && (
@@ -95,37 +128,41 @@ function Projects() {
         id="projects"
         className="bg-gradient-to-b from-[#fce4e4] to-[var(--bg)] mt-[10rem]"
       >
-        <h1 className="text-stroke-heading mx-[5%] mb-[-7%]">Projects</h1>
+        <h1 className="text-stroke-heading mb-[-7%]">Projects</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 w-full px-[3%] gap-[3%] mb-12">
           {projectsToShow.map((project) => (
             <section
               key={project.id}
-              className={`${project.bg} w-full px-10 py-36`}
+              className={`${project.bg} w-full px-10 overflow-hidden`}
             >
-              <figure
-                className="project w-full !aspect-[16/9] overflow-hidden relative rounded-xl mb-36 cursor-pointer"
-                onClick={() => openPopup(project)}
-              >
-                <img className="absolute z-10" src={browserTab} alt="Tab" />
-                <img
-                  className="absolute top-[6%] px-1 w-full"
-                  src={project.image}
-                  alt={project.name}
-                />
-              </figure>
-              <h1 className="border-b border-black/20 font-bold md:text-[3vw] text-[8vw]">
-                {project.name}
-              </h1>
-              <div className="flex justify-between items-center h-[40px] -ml-4">
-                <SmBtn CName="md:text-[1.2rem] group">
-                  Live site
+              <div className="projContainer relative my-[8vw] hover:scale-[101.5%] transition-transform duration-500">
+                <figure
+                  className="project w-full !aspect-[16/9] overflow-hidden relative rounded-xl mb-[5vw] cursor-pointer"
+                  onClick={() => openPopup(project)}
+                >
+                  <img className="absolute z-10" src={browserTab} alt="Tab" />
                   <img
-                    src="/diagonal-arrow.svg"
-                    className="size-5 rotate-45 group-hover:rotate-0 transition-transform"
+                    className="absolute top-[6%] px-1 w-full"
+                    src={project.image}
+                    alt={project.name}
                   />
-                </SmBtn>
-                <span className="md:text-[1.2rem] text-md">{project.date}</span>
+                </figure>
+                <h1 className="border-b border-black/20 font-bold md:text-[3vw] text-[8vw]">
+                  {project.name}
+                </h1>
+                <div className="flex justify-between items-center h-[40px] -ml-4">
+                  <SmBtn CName="md:text-[1.2rem] group">
+                    Live site
+                    <img
+                      src="/diagonal-arrow.svg"
+                      className="size-5 rotate-45 group-hover:rotate-0 transition-transform"
+                    />
+                  </SmBtn>
+                  <span className="md:text-[1.2rem] text-md">
+                    {project.date}
+                  </span>
+                </div>
               </div>
             </section>
           ))}

@@ -37,7 +37,7 @@ function Hero() {
       const spans = Imrishu.current.querySelectorAll("span");
       gsap.set(spans, { y: 1000 });
     }
-    // Timeout to wait until preloader finishes
+    // Timeout to wait for preloader to finish
     const timer = setTimeout(() => {
       if (imgBorder.current) {
         gsap.to(imgBorder.current, {
