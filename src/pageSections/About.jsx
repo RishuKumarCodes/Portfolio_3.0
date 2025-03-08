@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CTAbtn } from "../components/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,14 +86,8 @@ function About() {
               </span>
             ))}
         </p>
-        <a href="#" className="magnetic-btn" data-hover data-hover-bounds>
-          Get CV
-          <div data-hover-bounds></div>
-        </a>
-        <a href="#" className="magnetic-btn" data-hover data-hover-bounds>
-          Hire me
-          <div data-hover-bounds></div>
-        </a>
+        <CTAbtn href="#">Get CV</CTAbtn>
+        <CTAbtn href="#">Hire me</CTAbtn>
       </div>
 
       {/* for small screen */}

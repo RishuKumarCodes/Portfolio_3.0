@@ -5,7 +5,7 @@
         "dataScrollSpeed": "2.3",
         "styleOverrides": { "left": "48%", "top": "50%", "transform": "rotate(-13deg)" },
         "title": "Backend",
-        "items": ["JavaScript", "Node.js", "Express.js", "RESTful APIs"]
+        "items": ["JavaScript", "TypeScript", "Node.js", "Express.js", "RESTful APIs"]
       },
       {
         "id": "frontend",
@@ -19,14 +19,14 @@
         "dataScrollSpeed": "-2",
         "styleOverrides": { "left": "20%", "top": "55%", "transform": "rotate(-14deg)" },
         "title": "Tools & Tech",
-        "items": ["Git", "GitHub", "VS Code", "Linux", "Hoppscotch"]
+        "items": ["Git", "GitHub", "VS Code", "Linux", "Postman"]
       },
       {
         "id": "database",
         "dataScrollSpeed": "3.5",
         "styleOverrides": { "left": "37%", "top": "70%", "transform": "rotate(14deg)" },
         "title": "Database",
-        "items": ["SQL", "MongoDB"]
+        "items": ["SQL", "MongoDB", "Redis"]
       },
       {
         "id": "languages",

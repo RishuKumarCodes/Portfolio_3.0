@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom";
+import { CTAbtn } from "../components/MagneticButton";
 
 function ProjectPopup({ selectedProject, closePopup }) {
   return ReactDOM.createPortal(
@@ -12,10 +13,7 @@ function ProjectPopup({ selectedProject, closePopup }) {
       <div className="absolute bottom-0 left-0 bg-(--bg) h-[calc(100vh-60px)] w-full z-100 rounded-(--brad) overflow-y-scroll">
         <header className="flex m-[10%] justify-between">
           <h2 className="text-[6.6vw] uppercase">{selectedProject?.name}</h2>
-          <a href="#" className="magnetic-btn" data-hover data-hover-bounds>
-            Visit
-            <div data-hover-bounds></div>
-          </a>
+          <CTAbtn>Visit</CTAbtn>
         </header>
         <figure className="mx-[10%]">
           <img

@@ -2,9 +2,36 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import PropTypes from "prop-types";
 
-const CTAbtn = () => {
-  return <div>CTAbtn</div>;
-}
+const CTAbtn = ({
+  children,
+  href = "#",
+  onClick,
+  CName = "",
+  color = "black",
+  ...rest
+}) => {
+  return (
+    <a
+      href={href}
+      className={`size-[9vw] flex items-center justify-center !text-${color} font-medium border-b-[1.8vw] border-b-[#00000048] text-[2vw] text-nowrap max-[768px]:hidden ${CName}`}
+      data-hover
+      data-hover-bounds
+      onClick={onClick}
+      {...rest}
+    >
+      {children}
+      <div data-hover-bounds></div>
+    </a>
+  );
+};
+
+CTAbtn.propTypes = {
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  CName: PropTypes.string,
+  color: PropTypes.string,
+};
 
 const SmBtn = ({
   children,
