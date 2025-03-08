@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import NavBox from "./NavBox";
 import Sidebar from "./Sidebar";
 
 const SiteBorder = ({ children }) => {
@@ -20,13 +21,12 @@ const SiteBorder = ({ children }) => {
       : "flex-1 m-(--siteborder) ml-0 rounded-(--mrad) overflow-y-scroll h-[calc(100vh)- var(--siteborder)] w-max bg-(--bg)";
 
   return (
-    <>
-      <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
-        {windowWidth > 650 ? <Sidebar /> : <></>}
-        {/* main content */}
-        <div className={contentClasses}>{children}</div>
-      </div>
-    </>
+    <div className="w-[100vw] h-[100vh] bg-black flex overflow-hidden siteborder">
+      <NavBox />
+      {windowWidth > 650 ? <Sidebar /> : <></>}
+      {/* main content */}
+      <div className={contentClasses}>{children}</div>
+    </div>
   );
 };
 

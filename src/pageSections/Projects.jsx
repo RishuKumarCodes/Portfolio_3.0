@@ -5,6 +5,7 @@ const projData = data.proj;
 import browserTab from "/browserTab.svg";
 import ProjectPopup from "./ProjectPopup";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SmBtn } from "../components/MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,29 +114,26 @@ function Projects() {
                   alt={project.name}
                 />
               </figure>
-              <h1 className="border-b border-black/20 font-bold text-[3vw]">
+              <h1 className="border-b border-black/20 font-bold md:text-[3vw] text-[8vw]">
                 {project.name}
               </h1>
-              <div className="flex justify-between">
-                <button className="text-[1.1vw] hover:underline cursor-pointer">
+              <div className="flex justify-between items-center h-[40px] -ml-4">
+                <SmBtn CName="md:text-[1.2rem] group">
                   Live site
-                </button>
-                <span className="text-[1.1vw]">{project.date}</span>
+                  <img
+                    src="/diagonal-arrow.svg"
+                    className="size-5 rotate-45 group-hover:rotate-0 transition-transform"
+                  />
+                </SmBtn>
+                <span className="md:text-[1.2rem] text-md">{project.date}</span>
               </div>
             </section>
           ))}
         </div>
-        <div className="w-full flex justify-center ">
-          <a
-            href="#"
-            className="text-xl font-semibold flex gap-3 items-center m-8 border-b border-transparent hover:border-black"
-            data-magnet-btn-only
-            data-hover-bounds
-          >
-            More Projects{" "}
-            <img src="/down-arrow.svg" alt="" className="size-5 -rotate-90" />
-            <div data-hover-bounds></div>
-          </a>
+        <div className="w-full flex justify-center h-[70px]">
+          <SmBtn href="#" CName="text-xl">
+            More Projects <img src="/right-arrow.svg" className="size-4" />
+          </SmBtn>
         </div>
       </div>
     </>
@@ -143,5 +141,3 @@ function Projects() {
 }
 
 export default Projects;
-
-// Todo: fix the magnetic small button, fix the cursorComponent.jsx
