@@ -6,13 +6,13 @@
       "bg": "bg-[#97252571]",
       "image": "/projects/portfolio.png",
       "date": "20.4.2024",
-      "Visit": "https://github.com/RishuKumarCodes/",
+      "visit": "https://github.com/RishuKumarCodes/",
       "repo": "https://github.com/RishuKumarCodes/",
-      "Type": "Full stack MERN",
+      "type": "Full stack MERN",
       "visuals": [
-        "/images/screenshot1.png",
-        "/images/diagram1.png",
-        "/images/diagram2.png"
+        "/projects/baasskyy.png",
+        "/projects/baasskyy.png",
+        "/projects/portfolio.png"
       ],
       "features": [
         "Responsive Design",
@@ -25,7 +25,7 @@
         "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
         "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
         "outcome": "Boosted engagement and positive feedback from potential employers.",
-        "Learnings": "React, JS Tailwind ",
+        "learnings": "React, JS Tailwind ",
         "reflectionsAndFutureImprovements": "none"
       }
     },
@@ -35,9 +35,9 @@
       "bg": "bg-[#3656857a]",
       "image": "/projects/baasskyy.png",
       "date": "20.6.2024",
-      "Visit": "https://github.com/RishuKumarCodes/",
+      "visit": "https://github.com/RishuKumarCodes/",
       "repo": "https://github.com/RishuKumarCodes/",
-      "Type": "Full stack MERN",
+      "type": "Full stack MERN",
       "visuals": [
         "/images/screenshot1.png",
         "/images/diagram1.png",
@@ -54,7 +54,7 @@
         "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
         "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
         "outcome": "Boosted engagement and positive feedback from potential employers.",
-        "Learnings": "React, JS Tailwind ",
+        "learnings": "React, JS Tailwind ",
         "reflectionsAndFutureImprovements": "none"
       }
     },
@@ -64,9 +64,9 @@
       "bg": "bg-[#00d41c75]",
       "image": "/projects/spotify.png",
       "date": "20.1.2025",
-      "Visit": "https://github.com/RishuKumarCodes/",
+      "visit": "https://github.com/RishuKumarCodes/",
       "repo": "https://github.com/RishuKumarCodes/",
-      "Type": "Full stack MERN",
+      "type": "Full stack MERN",
       "visuals": [
         "/images/screenshot1.png",
         "/images/diagram1.png",
@@ -83,7 +83,7 @@
         "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
         "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
         "outcome": "Boosted engagement and positive feedback from potential employers.",
-        "Learnings": "React, JS Tailwind ",
+        "learnings": "React, JS Tailwind ",
         "reflectionsAndFutureImprovements": "none"
       }
     },
@@ -93,9 +93,9 @@
       "bg": "bg-[#d6803a57]",
       "image": "/projects/harryPotter.png",
       "date": "20.9.2023",
-      "Visit": "https://github.com/RishuKumarCodes/",
+      "visit": "https://github.com/RishuKumarCodes/",
       "repo": "https://github.com/RishuKumarCodes/",
-      "Type": "Full stack MERN",
+      "type": "Full stack MERN",
       "visuals": [
         "/images/screenshot1.png",
         "/images/diagram1.png",
@@ -112,7 +112,7 @@
         "objectives": "Create an online presence that communicates technical expertise, attracts potential employers, and provides a platform to display projects.",
         "challenge": "Creating a design that is both simple and effective in communicating technical expertise.",
         "outcome": "Boosted engagement and positive feedback from potential employers.",
-        "Learnings": "React, JS Tailwind ",
+        "learnings": "React, JS Tailwind ",
         "reflectionsAndFutureImprovements": "none"
       }
     }

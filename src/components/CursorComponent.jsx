@@ -76,7 +76,7 @@ const CursorComponent = () => {
           this.position.target.y = cy + dy * 0.15;
           if (!this.hoverEl.hasAttribute("data-magnet-btn-only")) {
             // this changes the size of cursor on hover:
-            this.scale.target = (window.innerWidth * 0.45) / 100;
+            this.scale.target = Math.max(((window.innerWidth * 0.45) / 100), 5.1);
           }else {
             this.scale.target = 1;
           }

@@ -29,7 +29,7 @@ function NavBox() {
   return (
     <div
       ref={textRef}
-      className="fixed top-[var(--siteborder)] right-[7%] w-[350px] h-[47px] flex items-center px-[40px] z-[500] max-[500px]:hidden"
+      className="fixed top-[var(--siteborder)] right-[7%] w-[350px] h-[47px] flex items-center px-[40px] z-50 max-[500px]:hidden"
       style={{ background: "url('/portfolio-nav-bar.svg') no-repeat" }}
     >
       <SmBtn

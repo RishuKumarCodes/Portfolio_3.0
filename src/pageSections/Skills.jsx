@@ -200,7 +200,7 @@ function Skills() {
       <div
         ref={skillsRef}
         id="skills"
-        className=" md:aspect-[16/9] w-full relative overflow-hidden z-50"
+        className=" md:aspect-[16/9] w-full relative overflow-hidden"
       >
         <TechStackLargeScreen />
         <SkillsContent />

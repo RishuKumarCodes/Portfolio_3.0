@@ -2,14 +2,28 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import PropTypes from "prop-types";
 
-const CTAbtn = ({ children, href = "#", onClick, CName = "", ...rest }) => {
+const CTAbtn = ({
+  children,
+  href = "#",
+  onClick,
+  CName = "",
+  color = "black",
+  borderCol = "#00000048",
+  ...rest
+}) => {
+  const btnStyle = {
+    color: color,
+    borderBottom: `1.8vw solid ${borderCol}`,
+  };
+
   return (
     <a
       href={href}
-      className={`size-[9vw] flex items-center justify-center !text-black font-medium border-b-[1.8vw] border-b-[#00000048] text-[2vw] text-nowrap max-[768px]:hidden ${CName}`}
+      className={`size-[9vw] min-w-[90px] min-h-[90px] flex items-center justify-center font-medium text-[max(2vw,20px)] text-nowrap max-[768px]:hidden group ${CName}`}
       data-hover
       data-hover-bounds
       onClick={onClick}
+      style={btnStyle}
       {...rest}
     >
       {children}
@@ -23,6 +37,15 @@ CTAbtn.propTypes = {
   href: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   CName: PropTypes.string,
+};
+
+CTAbtn.propTypes = {
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  CName: PropTypes.string,
+  color: PropTypes.string,
+  borderCol: PropTypes.string,
 };
 
 const SmBtn = ({
